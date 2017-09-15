@@ -229,6 +229,7 @@ $(document).ready(function(){initNavTree('mechahamster_guide_building.html','');
 <li>Navigate to the <a href="https://console.firebase.google.com/">Firebase Console</a>.</li>
 <li>In the upper left, click on the gear, and select 'Project Settings'</li>
 <li>Enter your signing certificate's SHA-1 in the indicated field. (Instructions for calculating your certificate's fingerprint can be found <a href="https://developers.google.com/android/guides/client-auth">here</a>)</li>
+<li>After the change, you need to re-download <code>google-services.json</code> again. You can find the download button in the same page. Then replace the one you stored in your <code>/Assets</code> directory.</li>
 </ol>
 <h4>(iOS Only) Set App Capabilities</h4>
 <p>MechaHamster requires several capabilities to be enabled in XCode in order to function on iOS devices.</p>
@@ -293,6 +294,20 @@ $(document).ready(function(){initNavTree('mechahamster_guide_building.html','');
 <div class="line">  }</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>(MechaHamster uses the name 'XYZZY' to represent desktop users, since Firebase Authentication only functions on mobile devices.)</p>
+<h4>Update Firebase url in the script</h4>
+<p>MechaHamster can access Firebase Realtime Database in the Unity Editor. Set Database url to your project's database url using the SetEditorDatabaseUrl() function.</p>
+<ol type="1">
+<li>Open <code>\Assets\Hamster\Scripts\MainGame.cs</code> in the text editor.</li>
+<li>Find the line with <code>SetEditorDatabaseUrl</code>. For instance, <div class="fragment"><div class="line"><span class="keywordtype">void</span> StartGame() {</div>
+<div class="line">  ...</div>
+<div class="line">  CommonData.app.SetEditorDatabaseUrl(<span class="stringliteral">&quot;https://hamster-demo.firebaseio.com/&quot;</span>);</div>
+<div class="line">  ...</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li>Change the url to "https://YOUR-FIREBASE-APP.firebaseio.com/". "YOUR-FIREBASE-APP" is your project ID which you can find from the <a href="https://console.firebase.google.com/">Firebase Console</a> . You can also find the url in <code>google-services.json</code> (android) or <code>GoogleService-Info.plist</code> (iOS).</li>
+<li>Save the script and rebuild with the Unity Editor.</li>
+</ol>
+<p>Currently this affects non-editor build as well.</p>
 <p><br/>
  </p>
 </div></div><!-- contents -->
